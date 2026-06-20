@@ -9,21 +9,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // SORTIE design tokens
-        bg: '#0a0a0a',
-        surface: '#0d0d0d',
-        surface2: '#111111',
-        line: '#1f1f1f',
-        line2: '#2a2a2a',
-        ink: '#e5e5e5',
-        dim: '#a3a3a3',
-        mute: '#737373',
-        dim2: '#404040',
-        // Status
-        green: '#14F195',
-        red: '#ef4444',
-        purple: '#9945FF',
-        amber: '#fbbf24',
+        // SORTIE design tokens (CSS variables for theme switching)
+        bg: 'var(--bg)',
+        surface: 'var(--surface)',
+        surface2: 'var(--surface-2)',
+        line: 'var(--line)',
+        line2: 'var(--line-2)',
+        ink: 'var(--ink)',
+        dim: 'var(--dim)',
+        mute: 'var(--mute)',
+        dim2: 'var(--dim-2)',
+        green: 'var(--green)',
+        red: 'var(--red)',
+        purple: 'var(--purple)',
+        amber: 'var(--amber)',
       },
       fontFamily: {
         mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],

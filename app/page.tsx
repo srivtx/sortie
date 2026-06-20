@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { isValidSignature } from '@/lib/utils';
 import RecentFailures from '@/components/RecentFailures';
 import { Github, Server, ArrowRight, AlertTriangle, Activity, Cpu, GitBranch, Zap } from 'lucide-react';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Home() {
   const [signature, setSignature] = useState('');
@@ -57,99 +58,100 @@ export default function Home() {
   return (
     <div className="min-h-screen scanlines">
       {/* Status bar */}
-      <div className="border-b border-[#1f1f1f] bg-[#0a0a0a] text-[10px] text-[#737373] font-mono">
+      <div className="border-b border-line bg-bg text-[10px] text-mute font-mono">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-6 flex items-center gap-4 overflow-x-auto whitespace-nowrap">
-          <span className="flex items-center gap-1.5 text-[#14F195]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#14F195] animate-pulse" />
+          <span className="flex items-center gap-1.5 text-green">
+            <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse" />
             online
           </span>
-          <span className="text-[#1f1f1f]">·</span>
+          <span className="text-line">·</span>
           <span>net:mainnet</span>
-          <span className="text-[#1f1f1f]">·</span>
+          <span className="text-line">·</span>
           <span>v0.1.0</span>
-          <span className="text-[#1f1f1f]">·</span>
-          <span className="text-[#a3a3a3]">{now}</span>
-          <span className="text-[#1f1f1f]">·</span>
-          <a href="/mcp-demo" className="hover:text-[#14F195]">mcp:on</a>
-          <span className="text-[#1f1f1f]">·</span>
-          <a href="https://github.com/srivtx/sortie" target="_blank" rel="noreferrer" className="hover:text-[#14F195]">github</a>
+          <span className="text-line">·</span>
+          <span className="text-dim">{now}</span>
+          <span className="text-line">·</span>
+          <a href="/mcp-demo" className="hover:text-green">mcp:on</a>
+          <span className="text-line">·</span>
+          <a href="https://github.com/srivtx/sortie" target="_blank" rel="noreferrer" className="hover:text-green">github</a>
         </div>
       </div>
 
       {/* Hero / terminal */}
-      <section className="border-b border-[#1f1f1f]">
+      <section className="border-b border-line">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           {/* Header row */}
           <div className="flex items-center gap-3 mb-8">
             <img src="/logo.svg" alt="SORTIE" className="w-9 h-9" />
             <div>
-              <div className="text-[#e5e5e5] text-lg font-bold tracking-tight">SORTIE</div>
-              <div className="text-[10px] text-[#737373]">semantic execution debugger · solana</div>
+              <div className="text-ink text-lg font-bold tracking-tight">SORTIE</div>
+              <div className="text-[10px] text-mute">semantic execution debugger · solana</div>
             </div>
-            <div className="ml-auto flex items-center gap-3 text-[10px] text-[#737373]">
-              <a href="/mcp-demo" className="hover:text-[#14F195] flex items-center gap-1">
+            <div className="ml-auto flex items-center gap-3 text-[10px] text-mute">
+              <a href="/mcp-demo" className="hover:text-green flex items-center gap-1">
                 <Server className="w-3 h-3" /> mcp
               </a>
-              <a href="https://github.com/srivtx/sortie" target="_blank" rel="noreferrer" className="hover:text-[#14F195] flex items-center gap-1">
+              <a href="https://github.com/srivtx/sortie" target="_blank" rel="noreferrer" className="hover:text-green flex items-center gap-1">
                 <Github className="w-3 h-3" /> source
               </a>
+              <ThemeToggle />
             </div>
           </div>
 
           {/* Tagline */}
           <h1 className="text-3xl sm:text-5xl font-bold tracking-tight leading-[1.05] mb-3">
-            <span className="text-[#e5e5e5]">why did your</span>{' '}
-            <span className="text-[#9945FF]">solana tx</span>{' '}
-            <span className="text-[#e5e5e5]">fail?</span>
+            <span className="text-ink">why did your</span>{' '}
+            <span className="text-purple">solana tx</span>{' '}
+            <span className="text-ink">fail?</span>
           </h1>
-          <p className="text-[#a3a3a3] text-sm max-w-2xl mb-8 leading-relaxed">
-            <span className="text-[#737373]"># </span>stop reading hex. stop guessing error codes.{' '}
-            <span className="text-[#e5e5e5]">sortie</span> reconstructs the execution tree, decodes the failure,
+          <p className="text-dim text-sm max-w-2xl mb-8 leading-relaxed">
+            <span className="text-mute"># </span>stop reading hex. stop guessing error codes.{' '}
+            <span className="text-ink">sortie</span> reconstructs the execution tree, decodes the failure,
             and tells you what to fix.
           </p>
 
           {/* Terminal input */}
           <form onSubmit={handleSubmit} className="max-w-3xl">
-            <div className="border border-[#1f1f1f] rounded-lg overflow-hidden bg-[#0d0d0d]">
-              <div className="flex items-center gap-1.5 px-3 h-7 bg-[#111] border-b border-[#1f1f1f] text-[10px] text-[#737373]">
-                <span className="w-2 h-2 rounded-full bg-[#ef4444]/60" />
-                <span className="w-2 h-2 rounded-full bg-[#fbbf24]/60" />
-                <span className="w-2 h-2 rounded-full bg-[#14F195]/60" />
+            <div className="border border-line rounded-lg overflow-hidden bg-surface">
+              <div className="flex items-center gap-1.5 px-3 h-7 bg-[#111] border-b border-line text-[10px] text-mute">
+                <span className="w-2 h-2 rounded-full bg-red/60" />
+                <span className="w-2 h-2 rounded-full bg-amber/60" />
+                <span className="w-2 h-2 rounded-full bg-green/60" />
                 <span className="ml-2">sortie@mainnet ~ %</span>
               </div>
               <div className="p-3 sm:p-4 font-mono text-sm">
-                <div className="flex items-center gap-2 text-[#737373] mb-2">
-                  <span className="text-[#14F195]">$</span>
+                <div className="flex items-center gap-2 text-mute mb-2">
+                  <span className="text-green">$</span>
                   <span>sortie analyze</span>
-                  <span className="text-[#9945FF]">--tx</span>
+                  <span className="text-purple">--tx</span>
                   <select
                     value={network}
                     onChange={(e) => setNetwork(e.target.value)}
-                    className="bg-transparent text-[#9945FF] outline-none cursor-pointer font-mono"
+                    className="bg-transparent text-purple outline-none cursor-pointer font-mono"
                   >
-                    <option value="mainnet" className="bg-[#0d0d0d]">--mainnet</option>
-                    <option value="devnet" className="bg-[#0d0d0d]">--devnet</option>
-                    <option value="testnet" className="bg-[#0d0d0d]">--testnet</option>
+                    <option value="mainnet" className="bg-surface">--mainnet</option>
+                    <option value="devnet" className="bg-surface">--devnet</option>
+                    <option value="testnet" className="bg-surface">--testnet</option>
                   </select>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[#14F195]">›</span>
+                  <span className="text-green">›</span>
                   <input
                     type="text"
                     value={signature}
                     onChange={(e) => setSignature(e.target.value)}
                     placeholder="paste base58 signature (87-88 chars)"
-                    className="flex-1 bg-transparent text-[#e5e5e5] placeholder:text-[#404040] outline-none font-mono text-sm"
+                    className="flex-1 bg-transparent text-ink placeholder:text-dim2 outline-none font-mono text-sm"
                     autoFocus
                     spellCheck={false}
                   />
                 </div>
                 {error && (
-                  <div className="mt-2 text-[#ef4444] text-xs">
-                    <span className="text-[#737373]">! </span>{error}
+                  <div className="mt-2 text-red text-xs">
+                    <span className="text-mute">! </span>{error}
                   </div>
                 )}
-                <div className="mt-3 flex items-center justify-between text-[10px] text-[#404040]">
+                <div className="mt-3 flex items-center justify-between text-[10px] text-dim2">
                   <span>↵ run</span>
                   <span>--network {network}</span>
                 </div>
@@ -159,25 +161,25 @@ export default function Home() {
 
           {/* Examples as commands */}
           <div className="mt-5 max-w-3xl">
-            <div className="text-[10px] text-[#737373] mb-2"># or try an example:</div>
+            <div className="text-[10px] text-mute mb-2"># or try an example:</div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 font-mono text-xs">
               {examples.map((ex) => {
                 const toneColor = {
-                  green: 'border-[#14F195]/30 hover:border-[#14F195]/60 text-[#14F195]',
-                  purple: 'border-[#9945FF]/30 hover:border-[#9945FF]/60 text-[#9945FF]',
-                  red: 'border-[#ef4444]/30 hover:border-[#ef4444]/60 text-[#ef4444]',
+                  green: 'border-green/30 hover:border-green/60 text-green',
+                  purple: 'border-purple/30 hover:border-purple/60 text-purple',
+                  red: 'border-red/30 hover:border-red/60 text-red',
                 }[ex.tone];
                 return (
                   <button
                     key={ex.sig}
                     onClick={() => { setSignature(ex.sig); setNetwork(ex.net); setError(''); }}
-                    className={`group text-left bg-[#0d0d0d] border ${toneColor} rounded px-3 py-2 transition`}
+                    className={`group text-left bg-surface border ${toneColor} rounded px-3 py-2 transition`}
                   >
                     <div className="flex items-center gap-2 mb-0.5">
                       <span className="opacity-60">$</span>
                       <span className="truncate">{ex.label}</span>
                     </div>
-                    <div className="text-[#737373] text-[10px] pl-3">{ex.meta}</div>
+                    <div className="text-mute text-[10px] pl-3">{ex.meta}</div>
                   </button>
                 );
               })}
@@ -187,28 +189,28 @@ export default function Home() {
       </section>
 
       {/* Live ops feed */}
-      <section className="border-b border-[#1f1f1f] bg-[#080808]">
+      <section className="border-b border-line bg-bg">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
           <div className="flex items-baseline justify-between mb-4">
-            <div className="flex items-center gap-2 text-[11px] text-[#a3a3a3]">
-              <span className="text-[#14F195]">●</span>
-              <span className="font-semibold text-[#e5e5e5]">live</span>
+            <div className="flex items-center gap-2 text-[11px] text-dim">
+              <span className="text-green">●</span>
+              <span className="font-semibold text-ink">live</span>
               <span>// recent failures on mainnet</span>
               {liveCount !== null && (
-                <span className="text-[#737373]">· {liveCount} found</span>
+                <span className="text-mute">· {liveCount} found</span>
               )}
             </div>
-            <span className="text-[10px] text-[#404040]">refresh: 15s</span>
+            <span className="text-[10px] text-dim2">refresh: 15s</span>
           </div>
           <RecentFailures />
         </div>
       </section>
 
       {/* What you get — command help style */}
-      <section className="border-b border-[#1f1f1f]">
+      <section className="border-b border-line">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-          <div className="text-[11px] text-[#737373] mb-3">$ sortie --help</div>
-          <div className="border border-[#1f1f1f] rounded-lg bg-[#0d0d0d] divide-y divide-[#1f1f1f]">
+          <div className="text-[11px] text-mute mb-3">$ sortie --help</div>
+          <div className="border border-line rounded-lg bg-surface divide-y divide-[#1f1f1f]">
             {[
               { icon: Activity, cmd: 'analyze', desc: 'full IR · CPI tree · compute · balance changes · protocol detection' },
               { icon: GitBranch, cmd: 'tree', desc: 'cross-program invocation tree, clickable, with compute + logs' },
@@ -218,9 +220,9 @@ export default function Home() {
               const Icon = c.icon;
               return (
                 <div key={c.cmd} className="flex items-start gap-3 px-4 py-3 text-sm">
-                  <Icon className="w-3.5 h-3.5 text-[#737373] mt-0.5 shrink-0" />
-                  <span className="text-[#14F195] font-bold shrink-0">sortie {c.cmd}</span>
-                  <span className="text-[#737373] text-xs">{c.desc}</span>
+                  <Icon className="w-3.5 h-3.5 text-mute mt-0.5 shrink-0" />
+                  <span className="text-green font-bold shrink-0">sortie {c.cmd}</span>
+                  <span className="text-mute text-xs">{c.desc}</span>
                 </div>
               );
             })}
@@ -229,35 +231,35 @@ export default function Home() {
       </section>
 
       {/* For agents — cat output style */}
-      <section className="border-b border-[#1f1f1f] bg-[#080808]">
+      <section className="border-b border-line bg-bg">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <div className="text-[10px] text-[#737373] mb-3"># For AI agents · MCP HTTP server</div>
-              <p className="text-sm text-[#a3a3a3] leading-relaxed mb-3">
+              <div className="text-[10px] text-mute mb-3"># For AI agents · MCP HTTP server</div>
+              <p className="text-sm text-dim leading-relaxed mb-3">
                 Every Claude Code, Codex, OpenCode session can call{' '}
-                <code className="text-[#14F195]">sortie.explain_failure</code> directly.
+                <code className="text-green">sortie.explain_failure</code> directly.
                 No browser. No copy-paste. Just an answer.
               </p>
-              <p className="text-sm text-[#a3a3a3] leading-relaxed">
-                <a href="/mcp-demo" className="text-[#14F195] hover:underline">→ Open MCP playground</a>
-                <span className="text-[#737373]"> · 4 tools · JSON-RPC 2.0 · http transport</span>
+              <p className="text-sm text-dim leading-relaxed">
+                <a href="/mcp-demo" className="text-green hover:underline">→ Open MCP playground</a>
+                <span className="text-mute"> · 4 tools · JSON-RPC 2.0 · http transport</span>
               </p>
             </div>
 
-            <div className="border border-[#1f1f1f] rounded-lg bg-[#0a0a0a] overflow-hidden">
-              <div className="flex items-center gap-1.5 px-3 h-7 bg-[#111] border-b border-[#1f1f1f] text-[10px] text-[#737373]">
-                <span className="w-2 h-2 rounded-full bg-[#ef4444]/60" />
-                <span className="w-2 h-2 rounded-full bg-[#fbbf24]/60" />
-                <span className="w-2 h-2 rounded-full bg-[#14F195]/60" />
+            <div className="border border-line rounded-lg bg-bg overflow-hidden">
+              <div className="flex items-center gap-1.5 px-3 h-7 bg-[#111] border-b border-line text-[10px] text-mute">
+                <span className="w-2 h-2 rounded-full bg-red/60" />
+                <span className="w-2 h-2 rounded-full bg-amber/60" />
+                <span className="w-2 h-2 rounded-full bg-green/60" />
                 <span className="ml-2">~ cat .config/claude/mcp.json</span>
               </div>
-              <pre className="p-4 text-xs text-[#e5e5e5] overflow-x-auto leading-relaxed font-mono">
+              <pre className="p-4 text-xs text-ink overflow-x-auto leading-relaxed font-mono">
 {`{
   "mcpServers": {
     "sortie": {
       "type": "http",
-      "url": "http://localhost:3000`}<span className="text-[#9945FF]">{`/api/mcp`}</span>{`"
+      "url": "http://localhost:3000`}<span className="text-purple">{`/api/mcp`}</span>{`"
     }
   }
 }`}
@@ -268,15 +270,15 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#0a0a0a]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] text-[#737373] font-mono">
+      <footer className="bg-bg">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] text-mute font-mono">
           <div>
-            <span className="text-[#14F195]">$</span> exit · sortie v0.1.0 · mit
+            <span className="text-green">$</span> exit · sortie v0.1.0 · mit
           </div>
           <div className="flex items-center gap-3">
-            <a href="https://github.com/srivtx/sortie" target="_blank" rel="noreferrer" className="hover:text-[#14F195]">github.com/srivtx/sortie</a>
-            <span className="text-[#1f1f1f]">·</span>
-            <a href="/mcp-demo" className="hover:text-[#14F195]">mcp demo</a>
+            <a href="https://github.com/srivtx/sortie" target="_blank" rel="noreferrer" className="hover:text-green">github.com/srivtx/sortie</a>
+            <span className="text-line">·</span>
+            <a href="/mcp-demo" className="hover:text-green">mcp demo</a>
           </div>
         </div>
       </footer>

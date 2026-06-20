@@ -78,22 +78,22 @@ export default function RecentFailures() {
   return (
     <div className="font-mono">
       {error && (
-        <div className="text-[#ef4444] text-xs bg-[#ef4444]/5 border border-[#ef4444]/20 rounded px-3 py-2 mb-3">
-          <span className="text-[#737373]">! </span>{error}
-          <span className="text-[#737373]"> · public RPC may be rate-limited. retry in 60s.</span>
+        <div className="text-red text-xs bg-red/5 border border-red/20 rounded px-3 py-2 mb-3">
+          <span className="text-mute">! </span>{error}
+          <span className="text-mute"> · public RPC may be rate-limited. retry in 60s.</span>
         </div>
       )}
 
       {loading && failures.length === 0 ? (
-        <div className="text-xs text-[#737373] py-6">$ scanning mainnet…</div>
+        <div className="text-xs text-mute py-6">$ scanning mainnet…</div>
       ) : failures.length === 0 ? (
-        <div className="text-xs text-[#737373] py-6">
-          <span className="text-[#14F195]">$ </span>no recent failures found. either everything is working or RPC is rate-limited.
+        <div className="text-xs text-mute py-6">
+          <span className="text-green">$ </span>no recent failures found. either everything is working or RPC is rate-limited.
         </div>
       ) : (
-        <div className="border border-[#1f1f1f] rounded overflow-hidden bg-[#0a0a0a]">
+        <div className="border border-line rounded overflow-hidden bg-bg">
           {/* Header row */}
-          <div className="hidden sm:grid grid-cols-[110px_120px_1fr_180px_60px] gap-3 px-3 py-1.5 text-[10px] text-[#737373] uppercase tracking-wider border-b border-[#1f1f1f]">
+          <div className="hidden sm:grid grid-cols-[110px_120px_1fr_180px_60px] gap-3 px-3 py-1.5 text-[10px] text-mute uppercase tracking-wider border-b border-line">
             <span>time</span>
             <span>program</span>
             <span>signature</span>
@@ -125,12 +125,12 @@ export default function RecentFailures() {
         </div>
       )}
 
-      <div className="mt-3 flex items-center justify-between text-[10px] text-[#404040]">
+      <div className="mt-3 flex items-center justify-between text-[10px] text-dim2">
         <span># click any row to analyze</span>
         <button
           onClick={() => load(true)}
           disabled={refreshing}
-          className="text-[#737373] hover:text-[#14F195] disabled:opacity-50"
+          className="text-mute hover:text-green disabled:opacity-50"
         >
           {refreshing ? 'refreshing…' : '↻ refresh'}
         </button>

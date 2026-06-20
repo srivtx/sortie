@@ -9,6 +9,7 @@ import ExecutionTimeline from '@/components/ExecutionTimeline';
 import FailureAnalysisPanel from '@/components/FailureAnalysis';
 import ComputeProfiler from '@/components/ComputeProfiler';
 import CopyButton from '@/components/CopyButton';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Activity, Layers, FileJson, Cpu, DollarSign, BarChart3, ArrowLeft, AlertCircle, CheckCircle2, Link as LinkIcon, Share2 } from 'lucide-react';
 
 type Tab = 'timeline' | 'cpi-tree' | 'compute' | 'logs' | 'raw';
@@ -92,6 +93,7 @@ export default function TransactionPage() {
           <a href="/" className="ml-auto hover:text-green flex items-center gap-1">
             <ArrowLeft className="w-3 h-3" /> back
           </a>
+          <ThemeToggle />
         </div>
       </div>
 

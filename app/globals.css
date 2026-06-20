@@ -2,52 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/* SORTIE design tokens — light & dark via CSS variables */
 :root {
+  /* Dark (default for SORTIE — terminal/ops aesthetic) */
   --bg: #0a0a0a;
-  --surface: #111111;
-  --surface-2: #161616;
-  --border: #1f1f1f;
-  --border-2: #2a2a2a;
-  --text: #e5e5e5;
-  --text-dim: #a3a3a3;
-  --text-muted: #737373;
+  --surface: #0d0d0d;
+  --surface-2: #111111;
+  --line: #1f1f1f;
+  --line-2: #2a2a2a;
+  --ink: #e5e5e5;
+  --dim: #a3a3a3;
+  --mute: #737373;
+  --dim-2: #404040;
+
   --green: #14F195;
-  --green-dim: #0fa371;
   --red: #ef4444;
   --purple: #9945FF;
   --amber: #fbbf24;
+
+  --scanline: rgba(255, 255, 255, 0.015);
+  --selection-bg: #14F195;
+  --selection-fg: #0a0a0a;
+}
+
+.light {
+  /* Light theme — paper terminal feel. Same monospace, status colors, structure. */
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --surface-2: #f5f5f4;
+  --line: #e7e5e4;
+  --line-2: #d6d3d1;
+  --ink: #1c1917;
+  --dim: #57534e;
+  --mute: #78716c;
+  --dim-2: #a8a29e;
+
+  /* Slightly darker for AA contrast on light bg */
+  --green: #059669;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --amber: #d97706;
+
+  --scanline: rgba(0, 0, 0, 0.02);
+  --selection-bg: #1c1917;
+  --selection-fg: #fafaf9;
 }
 
 * {
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* Kill ugly default scrollbars (polish-pitfalls #1) */
 ::-webkit-scrollbar { width: 0; height: 0; }
 ::-webkit-scrollbar-thumb { background: transparent; }
 ::-webkit-scrollbar-track { background: transparent; }
 * { scrollbar-width: none; }
 *::-webkit-scrollbar { width: 0; height: 0; }
 
-body {
+html, body {
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
-/* Subtle scanline texture (only on dark surfaces) */
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
 .scanlines {
-  background-image: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.015) 50%);
+  background-image: linear-gradient(transparent 50%, var(--scanline) 50%);
   background-size: 100% 4px;
 }
 
-/* Selection */
-::selection {
-  background: var(--green);
-  color: #0a0a0a;
-}
-
-/* Scrollbar utilities if you need them later */
-.scroll-thin::-webkit-scrollbar { width: 4px; height: 4px; }
-.scroll-thin::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+/* Theme switch — instant, no flash */
+html { color-scheme: dark; }
+html.light { color-scheme: light; }

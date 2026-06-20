@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { themeInitScript } from '@/components/ThemeToggle';
 
 export const metadata: Metadata = {
   title: 'SORTIE — semantic execution debugger for Solana',
@@ -15,8 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -24,7 +26,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5] font-mono antialiased">
+      <body className="min-h-screen bg-bg text-ink font-mono antialiased">
         {children}
       </body>
     </html>
