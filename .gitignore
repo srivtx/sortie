@@ -1,6 +1,15 @@
 node_modules/
 .next/
-*.bak
-.DS_Store
+out/
+build/
+dist/
+
 *.bak
 *.tsbuildinfo
+.DS_Store
+*.log
+.env*
+!.env.example
+
+.vscode/
+.idea/

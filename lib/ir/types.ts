@@ -323,7 +323,7 @@ export interface ProtocolInfo {
   semanticSummary: string | null;
 }
 
-export type ProtocolCategory = 'dex' | 'lending' | 'nft' | 'launchpad' | 'other';
+export type ProtocolCategory = 'dex' | 'lending' | 'nft' | 'launchpad' | 'perps' | 'other';
 
 // ============================================================================
 // LOGS

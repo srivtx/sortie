@@ -27,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     let cancelled = false;
-    const fetch = async () => {
+    const loadCount = async () => {
       try {
         const res = await fetch('/api/recent-failures?limit=20');
         if (!res.ok) return;
@@ -35,8 +35,8 @@ export default function Home() {
         if (!cancelled) setLiveCount(data.count || 0);
       } catch {}
     };
-    fetch();
-    const id = setInterval(fetch, 15000);
+    loadCount();
+    const id = setInterval(loadCount, 15000);
     return () => { cancelled = true; clearInterval(id); };
   }, []);
 

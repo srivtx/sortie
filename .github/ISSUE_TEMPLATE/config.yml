@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: SORTIE live demo
+    url: https://sortie-six.vercel.app
+    about: Try the live demo before opening an issue
+  - name: Solana AI Kit
+    url: https://github.com/solanabr/solana-ai-kit
+    about: Reference skills and extensions
