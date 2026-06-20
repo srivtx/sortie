@@ -428,7 +428,7 @@ export default function McpDemoPage() {
               <p className="text-sm text-dim leading-relaxed">
                 <span className="text-mute">$ </span>drop this into{' '}
                 <code className="text-green">~/.config/claude/mcp.json</code> (or
-                your client's equivalent) and{' '}
+                your client&apos;s equivalent) and{' '}
                 <code className="text-ink">sortie</code> is live in every agent session.
                 No npm, no auth, no version churn.
               </p>

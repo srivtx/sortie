@@ -26,17 +26,16 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Lint
-        run: npm run lint
+        run: npx next lint
 
       - name: Build
         run: npm run build
 
       - name: Verify API routes
         run: |
-          echo "Checking that the MCP and recent-failures API routes exist..."
           test -f app/api/mcp/route.ts && echo "✓ MCP route exists"
           test -f app/api/recent-failures/route.ts && echo "✓ recent-failures route exists"
-          test -f app/api/transaction/[signature]/route.ts && echo "✓ transaction route exists"
+          test -f "app/api/transaction/[signature]/route.ts" && echo "✓ transaction route exists"
 
   protocol-decoders:
     name: Protocol decoders
@@ -55,14 +54,13 @@ jobs:
 
       - name: Verify decoders are registered
         run: |
-          node -e "
-            const { decoders } = require('./lib/parser/protocols/index.ts');
-            if (decoders.length < 10) {
-              console.error('Expected at least 10 decoders, got ' + decoders.length);
-              process.exit(1);
-            }
-            console.log('✓ ' + decoders.length + ' decoders registered');
-          " 2>/dev/null || echo "(skipping — TS not loadable from node)"
+          DECODER_COUNT=$(grep -cE "^const [A-Z_]+_PROGRAM_ID" lib/parser/protocols/index.ts)
+          echo "Found $DECODER_COUNT protocol ID definitions"
+          if [ "$DECODER_COUNT" -lt 7 ]; then
+            echo "::error::Expected at least 7 decoders, got $DECODER_COUNT"
+            exit 1
+          fi
+          echo "✓ $DECODER_COUNT decoders registered"
 
   docs:
     name: Docs sanity

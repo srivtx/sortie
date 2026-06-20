@@ -195,7 +195,7 @@ export default function Home() {
             <div className="flex items-center gap-2 text-[11px] text-dim">
               <span className="text-green">●</span>
               <span className="font-semibold text-ink">live</span>
-              <span>// recent failures on mainnet</span>
+              <span>{'// recent failures on mainnet'}</span>
               {liveCount !== null && (
                 <span className="text-mute">· {liveCount} found</span>
               )}
