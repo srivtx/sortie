@@ -113,7 +113,7 @@ export default function Home() {
           {/* Terminal input */}
           <form onSubmit={handleSubmit} className="max-w-3xl">
             <div className="border border-line rounded-lg overflow-hidden bg-surface">
-              <div className="flex items-center gap-1.5 px-3 h-7 bg-[#111] border-b border-line text-[10px] text-mute">
+              <div className="flex items-center gap-1.5 px-3 h-7 bg-chrome border-b border-line text-[10px] text-mute">
                 <span className="w-2 h-2 rounded-full bg-red/60" />
                 <span className="w-2 h-2 rounded-full bg-amber/60" />
                 <span className="w-2 h-2 rounded-full bg-green/60" />
@@ -248,7 +248,7 @@ export default function Home() {
             </div>
 
             <div className="border border-line rounded-lg bg-bg overflow-hidden">
-              <div className="flex items-center gap-1.5 px-3 h-7 bg-[#111] border-b border-line text-[10px] text-mute">
+              <div className="flex items-center gap-1.5 px-3 h-7 bg-chrome border-b border-line text-[10px] text-mute">
                 <span className="w-2 h-2 rounded-full bg-red/60" />
                 <span className="w-2 h-2 rounded-full bg-amber/60" />
                 <span className="w-2 h-2 rounded-full bg-green/60" />

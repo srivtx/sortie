@@ -348,7 +348,7 @@ export default function McpDemoPage() {
             </div>
 
             <div className="border border-line rounded bg-bg">
-              <div className="flex items-center gap-1.5 px-3 h-7 bg-[#111] border-b border-line text-[10px] text-mute">
+              <div className="flex items-center gap-1.5 px-3 h-7 bg-chrome border-b border-line text-[10px] text-mute">
                 <span className="w-2 h-2 rounded-full bg-red/60" />
                 <span className="w-2 h-2 rounded-full bg-amber/60" />
                 <span className="w-2 h-2 rounded-full bg-green/60" />

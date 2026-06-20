@@ -13,6 +13,7 @@ module.exports = {
         bg: 'var(--bg)',
         surface: 'var(--surface)',
         surface2: 'var(--surface-2)',
+        chrome: 'var(--chrome)',
         line: 'var(--line)',
         line2: 'var(--line-2)',
         ink: 'var(--ink)',
