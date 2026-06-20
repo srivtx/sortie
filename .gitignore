@@ -1,0 +1,6 @@
+node_modules/
+.next/
+*.bak
+.DS_Store
+*.bak
+*.tsbuildinfo

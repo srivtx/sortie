@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface-2: #161616;
+  --border: #1f1f1f;
+  --border-2: #2a2a2a;
+  --text: #e5e5e5;
+  --text-dim: #a3a3a3;
+  --text-muted: #737373;
+  --green: #14F195;
+  --green-dim: #0fa371;
+  --red: #ef4444;
+  --purple: #9945FF;
+  --amber: #fbbf24;
+}
+
+* {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Kill ugly default scrollbars (polish-pitfalls #1) */
+::-webkit-scrollbar { width: 0; height: 0; }
+::-webkit-scrollbar-thumb { background: transparent; }
+::-webkit-scrollbar-track { background: transparent; }
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { width: 0; height: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Subtle scanline texture (only on dark surfaces) */
+.scanlines {
+  background-image: linear-gradient(transparent 50%, rgba(255, 255, 255, 0.015) 50%);
+  background-size: 100% 4px;
+}
+
+/* Selection */
+::selection {
+  background: var(--green);
+  color: #0a0a0a;
+}
+
+/* Scrollbar utilities if you need them later */
+.scroll-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
