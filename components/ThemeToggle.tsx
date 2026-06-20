@@ -5,6 +5,22 @@ import { Sun, Moon } from 'lucide-react';
 
 const STORAGE_KEY = 'sortie-theme';
 
+export function useTheme(): 'dark' | 'light' {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    const update = () => {
+      setTheme(document.documentElement.classList.contains('light') ? 'light' : 'dark');
+    };
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  return theme;
+}
+
 export function ThemeToggle() {
   const [theme, setTheme] = useState<'dark' | 'light' | null>(null);
 

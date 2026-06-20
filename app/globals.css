@@ -24,6 +24,19 @@
   --scanline: rgba(255, 255, 255, 0.015);
   --selection-bg: #14F195;
   --selection-fg: #0a0a0a;
+
+  /* React Flow */
+  --rf-bg: #0a0a0a;
+  --rf-grid: #1f1f1f;
+  --rf-edge-success: #14F195;
+  --rf-edge-fail: #ef4444;
+  --rf-controls-bg: #111111;
+  --rf-controls-border: #1f1f1f;
+  --rf-controls-text: #e5e5e5;
+  --rf-minimap-bg: #0d0d0d;
+  --rf-minimap-border: #1f1f1f;
+  --rf-mask: rgba(10, 10, 10, 0.6);
+  --rf-handle: #2a2a2a;
 }
 
 .light {
@@ -48,6 +61,19 @@
   --scanline: rgba(0, 0, 0, 0.02);
   --selection-bg: #1c1917;
   --selection-fg: #fafaf9;
+
+  /* React Flow */
+  --rf-bg: #ffffff;
+  --rf-grid: #e7e5e4;
+  --rf-edge-success: #059669;
+  --rf-edge-fail: #dc2626;
+  --rf-controls-bg: #ffffff;
+  --rf-controls-border: #e7e5e4;
+  --rf-controls-text: #1c1917;
+  --rf-minimap-bg: #fafaf9;
+  --rf-minimap-border: #e7e5e4;
+  --rf-mask: rgba(255, 255, 255, 0.6);
+  --rf-handle: #d6d3d1;
 }
 
 * {
@@ -81,3 +107,54 @@ html, body {
 /* Theme switch — instant, no flash */
 html { color-scheme: dark; }
 html.light { color-scheme: light; }
+
+/* React Flow theme overrides — auto-flip with light/dark */
+.react-flow { background-color: var(--rf-bg); }
+.react-flow__background { background-color: var(--rf-bg); }
+.react-flow__background path { stroke: var(--rf-grid); }
+.react-flow__edge-path,
+.react-flow__connection-path {
+  stroke: var(--rf-edge-success);
+}
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:focus .react-flow__edge-path,
+.react-flow__edge:focus-visible .react-flow__edge-path {
+  stroke: var(--green);
+}
+.react-flow__handle {
+  background-color: var(--rf-handle);
+  border-color: var(--rf-handle);
+}
+.react-flow__controls {
+  background-color: var(--rf-controls-bg);
+  border: 1px solid var(--rf-controls-border);
+  border-radius: 4px;
+  box-shadow: none;
+}
+.react-flow__controls-button {
+  background: transparent;
+  border-bottom: 1px solid var(--rf-controls-border);
+  color: var(--rf-controls-text);
+  fill: var(--rf-controls-text);
+}
+.react-flow__controls-button:hover {
+  background: var(--surface-2);
+}
+.react-flow__controls-button svg {
+  fill: var(--rf-controls-text);
+}
+.react-flow__minimap {
+  background-color: var(--rf-minimap-bg);
+  border: 1px solid var(--rf-minimap-border);
+  border-radius: 4px;
+}
+.react-flow__minimap-mask {
+  fill: var(--rf-mask);
+  stroke: var(--rf-line-2);
+}
+.react-flow__attribution {
+  background: transparent !important;
+  color: var(--mute) !important;
+  font-size: 9px !important;
+}
+.react-flow__attribution a { color: var(--mute) !important; }

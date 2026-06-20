@@ -18,6 +18,7 @@ import 'reactflow/dist/style.css';
 import { ExecutionStep } from '@/lib/ir/types';
 import { shorten } from '@/lib/utils';
 import { Box, Cpu, AlertCircle, CheckCircle2, Layers } from 'lucide-react';
+import { useTheme } from './ThemeToggle';
 
 interface CpiFlowProps {
   steps: ExecutionStep[];
@@ -117,6 +118,8 @@ export default function CpiFlow({ steps }: CpiFlowProps) {
 }
 
 function CpiFlowInner({ steps }: CpiFlowProps) {
+  const theme = useTheme();
+
   const { initialNodes, initialEdges } = useMemo(() => {
     const nodes: Node<NodeData>[] = [];
     const edges: Edge[] = [];
@@ -124,6 +127,9 @@ function CpiFlowInner({ steps }: CpiFlowProps) {
     const nodeWidth = 220;
     const levelGap = 150;
     const siblingGap = 240;
+
+    const successColor = theme === 'light' ? '#059669' : '#14F195';
+    const failColor = theme === 'light' ? '#dc2626' : '#ef4444';
 
     function buildTree(
       step: ExecutionStep,
@@ -158,7 +164,7 @@ function CpiFlowInner({ steps }: CpiFlowProps) {
           type: 'smoothstep',
           animated: step.result === 'success',
           style: {
-            stroke: step.result === 'failure' ? '#ef4444' : '#14F195',
+            stroke: step.result === 'failure' ? failColor : successColor,
             strokeWidth: 1.5,
             opacity: 0.7,
           },
@@ -200,7 +206,7 @@ function CpiFlowInner({ steps }: CpiFlowProps) {
     });
 
     return { initialNodes: nodes, initialEdges: edges };
-  }, [steps]);
+  }, [steps, theme]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -215,8 +221,14 @@ function CpiFlowInner({ steps }: CpiFlowProps) {
     }
   }, [initialNodes, initialEdges, setNodes, setEdges, fitView]);
 
+  const miniColors = {
+    fail: theme === 'light' ? '#dc2626' : '#ef4444',
+    root: theme === 'light' ? '#7c3aed' : '#9945FF',
+    success: theme === 'light' ? '#059669' : '#14F195',
+  };
+
   return (
-    <div className="bg-bg border border-line rounded" style={{ height: 600 }}>
+    <div className="bg-bg border border-line rounded overflow-hidden" style={{ height: 600 }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -225,30 +237,17 @@ function CpiFlowInner({ steps }: CpiFlowProps) {
         nodeTypes={nodeTypes}
         fitView
         fitViewOptions={{ padding: 0.15 }}
-        style={{ background: '#0a0a0a' }}
-        attributionPosition="bottom-left"
+        proOptions={{ hideAttribution: true }}
       >
-        <Background color="#1f1f1f" gap={24} size={1} />
-        <Controls
-          style={{
-            background: '#111',
-            border: '1px solid #1f1f1f',
-            borderRadius: 4,
-          }}
-        />
+        <Background gap={24} size={1} />
+        <Controls showInteractive={false} />
         <MiniMap
           nodeStrokeWidth={2}
           nodeColor={(n: any) => {
             const step = n.data?.step;
-            if (step?.result === 'failure') return '#ef4444';
-            if (step?.depth === 0) return '#9945FF';
-            return '#14F195';
-          }}
-          maskColor="rgba(10,10,10,0.6)"
-          style={{
-            background: '#0d0d0d',
-            border: '1px solid #1f1f1f',
-            borderRadius: 4,
+            if (step?.result === 'failure') return miniColors.fail;
+            if (step?.depth === 0) return miniColors.root;
+            return miniColors.success;
           }}
           zoomable
           pannable
