@@ -9,7 +9,7 @@
 Decode failures (`0x1771` → "slippage tolerance exceeded"). Trace CPI trees. Profile
 compute. Let AI agents inspect transactions through MCP.
 
-[![Live](https://img.shields.io/badge/demo-sortie--six.vercel.app-blue)](https://sortie-six.vercel.app)
+[![Live](https://img.shields.io/badge/demo-sortie--six.vercel.app-blue)](https://sortie.srivtx.xyz)
 [![Version](https://img.shields.io/badge/version-0.1.0-blue)](./CHANGELOG.md)
 [![License MIT](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![Solana](https://img.shields.io/badge/Solana-9945ff?logo=solana&logoColor=white)](https://solana.com)
